@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Vladimir
- * Date: 06.08.14
- * Time: 13:40
- * To change this template use File | Settings | File Templates.
- */
 
 namespace Fruitware\Samo;
 
