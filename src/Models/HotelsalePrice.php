@@ -14,7 +14,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getHotelID() {
-        return (int)$this->_node['hotel'];
+        return $this->checkNumber($this->_node['hotel']);
     }
 
     /**
@@ -22,7 +22,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getRoomID() {
-        return (int)$this->_node['room'];
+        return $this->checkNumber($this->_node['room']);
     }
 
     /**
@@ -30,7 +30,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getAllocationId() {
-        return (int)$this->_node['htplace'];
+        return $this->checkNumber($this->_node['htplace']);
     }
 
     /**
@@ -38,7 +38,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getMealId() {
-        return (int)$this->_node['meal'];
+        return $this->checkNumber($this->_node['meal']);
     }
 
     /**
@@ -86,7 +86,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getSpoId() {
-        return (int)$this->_node['spo'];
+        return $this->checkNumber($this->_node['spo']);
     }
 
     /**
@@ -100,7 +100,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getSpoTypeId() {
-        return (int)$this->_node['spotype'];
+        return $this->checkNumber($this->_node['spotype']);
     }
 
     /**
@@ -114,7 +114,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getSpoSubTypeId() {
-        return (int)$this->_node['sposubtype'];
+        return $this->checkNumber($this->_node['sposubtype']);
     }
 
     /**
@@ -122,7 +122,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getSpoAccommodationId() {
-        return (int)$this->_node['rroom'];
+        return $this->checkNumber($this->_node['rroom']);
     }
 
     /**
@@ -130,7 +130,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getFromSpoId() {
-        return (int)$this->_node['rhtplace'];
+        return $this->checkNumber($this->_node['rhtplace']);
     }
 
     /**
@@ -178,7 +178,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getCurrencyId() {
-        return (int)$this->_node['currency'];
+        return $this->checkNumber($this->_node['currency']);
     }
 
     /**

@@ -10,6 +10,6 @@ namespace Fruitware\Samo\Models;
 class ServiceType extends CommonName {
 
     public function getServiceTypeId() {
-        return (int)$this->_node['htplace'];
+        return $this->checkNumber($this->_node['htplace']);
     }
 }

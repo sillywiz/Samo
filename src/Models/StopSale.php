@@ -30,7 +30,7 @@ class StopSale extends CommonName {
      * @return int
      */
     public function getHotelId() {
-        return (int)$this->_node['hotel'];
+        return $this->checkNumber($this->_node['hotel']);
     }
 
     /**
@@ -38,7 +38,7 @@ class StopSale extends CommonName {
      * @return int
      */
     public function getRoomId() {
-        return (int)$this->_node['hotel'];
+        return $this->checkNumber($this->_node['room']);
     }
 
     /**
@@ -46,7 +46,7 @@ class StopSale extends CommonName {
      * @return int
      */
     public function getAllocationId() {
-        return (int)$this->_node['htplace'];
+        return $this->checkNumber($this->_node['htplace']);
     }
 
     /**
@@ -54,6 +54,6 @@ class StopSale extends CommonName {
      * @return int
      */
     public function getMealId() {
-        return (int)$this->_node['meal'];
+        return $this->checkNumber($this->_node['meal']);
     }
 }

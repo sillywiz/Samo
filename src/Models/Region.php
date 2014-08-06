@@ -14,7 +14,7 @@ class Region extends CommonName {
      * @return int
      */
     public function getStateID() {
-        return (int)$this->_node['state'];
+        return $this->checkNumber($this->_node['state']);
     }
 
 }

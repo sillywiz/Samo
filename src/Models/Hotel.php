@@ -14,7 +14,7 @@ class Hotel extends CommonName {
      * @return int
      */
     public function getStarID() {
-        return (int)$this->_node['star'];
+        return $this->checkNumber($this->_node['star']);
     }
 
     /**
@@ -22,6 +22,6 @@ class Hotel extends CommonName {
      * @return int
      */
     public function getTownID() {
-        return (int)$this->_node['town'];
+        return $this->checkNumber($this->_node['town']);
     }
 }

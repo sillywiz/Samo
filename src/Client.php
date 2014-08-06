@@ -73,20 +73,22 @@ class Client {
      * @throws Exception\SamoException
      */
     private function setObject($type, $get_deleted) {
-        $class = $this->getClassName($type);
+        $class = "Fruitware\\Samo\\Models\\".$this->getClassName($type);
         if(isset($class)) {
             $xml = $this->makeRequest($type);
-            if(!isset($xml, $xml->Valute)) {
+            if(!isset($xml, $xml->Data, $xml->Data->$type)) {
                 throw new SamoException('Error loading');
             }
             $newObjectArray = array();
             $delObjectArray = array();
-            foreach ($xml->Valute as $row) {
+            foreach ($xml->Data->$type as $row) {
                 $model = new $class($row);
-                if($model->getStatus() == "D")
-                    $newObjectArray[] = $model;
-                else
-                    $delObjectArray[] = $model;
+                if($model->getId() !== null) {
+                    if($model->getStatus() == "D")
+                        $delObjectArray[] = $model;
+                    else
+                        $newObjectArray[] = $model;
+                }
             }
             if($get_deleted)
                 return $delObjectArray;

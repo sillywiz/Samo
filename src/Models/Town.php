@@ -14,7 +14,7 @@ class Town extends CommonName {
      * @return int
      */
     public function getStateID() {
-        return (int)$this->_node['state'];
+        return $this->checkNumber($this->_node['state']);
     }
 
     /**
@@ -22,6 +22,6 @@ class Town extends CommonName {
      * @return int
      */
     public function getRegionID() {
-        return (int)$this->_node['region'];
+        return $this->checkNumber($this->_node['region']);
     }
 }

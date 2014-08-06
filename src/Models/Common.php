@@ -21,7 +21,7 @@ class Common {
      * @return int
      */
     public function getId() {
-        return (int)$this->_node['inc'];
+        return $this->checkNumber($this->_node['inc']);
     }
 
     /**
@@ -41,4 +41,10 @@ class Common {
         return (string)$this->_node['stamp'];
     }
 
+    protected  function checkNumber($number) {
+        $result = (int)$number;
+        if($result > 0)
+            return $result;
+        return null;
+    }
 }

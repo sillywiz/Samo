@@ -14,6 +14,6 @@ class Service extends CommonName {
      * @return int
      */
     public function getServiceTypeId() {
-        return (int)$this->_node["servtype"];
+        return $this->checkNumber($this->_node['servtype']);
     }
 }
