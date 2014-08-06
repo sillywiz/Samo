@@ -42,19 +42,36 @@ class Client {
 
     private $_url = "http://94.70.244.241/incoming/export/default.php";
 
+    /**
+     * @param $token
+     */
     public function __construct($token)
     {
         $this->_token = $token;
     }
 
+    /**
+     * @param $type
+     * @return array
+     */
     public function getListDeleted($type) {
-        $this->setObject($type, true);
+        return $this->setObject($type, true);
     }
 
+    /**
+     * @param string $type
+     * @return array
+     */
     public function getListNew($type) {
-        $this->setObject($type, false);
+        return $this->setObject($type, false);
     }
 
+    /**
+     * @param $type
+     * @param $get_deleted
+     * @return array
+     * @throws Exception\SamoException
+     */
     private function setObject($type, $get_deleted) {
         $class = $this->getClassName($type);
         if(isset($class)) {
@@ -80,6 +97,11 @@ class Client {
 
     }
 
+    /**
+     * @param $service_type
+     * @return \SimpleXMLElement
+     * @throws Exception\SamoException
+     */
     private function makeRequest($service_type)
     {
         $client = new GuzzleClient();
@@ -96,6 +118,10 @@ class Client {
         throw new SamoException('Error loading');
     }
 
+    /**
+     * @param $type
+     * @return null|string
+     */
     private function getClassName($type) {
         switch($type) {
             case Client::GET_ALLOCATIONS:
