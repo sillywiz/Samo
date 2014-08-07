@@ -6,7 +6,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
 use Fruitware\Samo\Exception\MainException;
 use Fruitware\Samo\Exception\ParseException;
-use Fruitware\Samo\Models\Result;
+use Fruitware\Samo\Result;
 
 class Client {
 
