@@ -5,6 +5,7 @@ namespace Fruitware\Samo;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
 use Fruitware\Samo\Exception\SamoException;
+use Fruitware\Samo\Models\Result;
 
 class Client {
 
@@ -42,58 +43,43 @@ class Client {
 
     private $_url = "http://94.70.244.241/incoming/export/default.php";
 
+    private $_query =[];
+
     /**
      * @param $token
      */
     public function __construct($token)
     {
         $this->_token = $token;
+        $this->_query = ['oauth_token' => $this->_token, 'samo_action' => 'reference'];
     }
 
     /**
      * @param $type
-     * @return array
+     * @param string $stamp
+     * @param string $delStamp
+     * @return Result
      */
-    public function getListDeleted($type) {
-        return $this->setObject($type, true);
-    }
-
-    /**
-     * @param string $type
-     * @return array
-     */
-    public function getListNew($type) {
-        return $this->setObject($type, false);
+    public function getResult($type, $stamp, $delStamp) {
+        return $this->setObject($type, $stamp, $delStamp);
     }
 
     /**
      * @param $type
-     * @param $get_deleted
-     * @return array
+     * @param $stamp
+     * @param $delStamp
+     * @return Result
      * @throws Exception\SamoException
      */
-    private function setObject($type, $get_deleted) {
-        $class = "Fruitware\\Samo\\Models\\".$this->getClassName($type);
+    private function setObject($type, $stamp, $delStamp) {
+        $class = $this->getClassName($type);
         if(isset($class)) {
-            $xml = $this->makeRequest($type);
-            if(!isset($xml, $xml->Data, $xml->Data->$type)) {
+            $class = "Fruitware\\Samo\\Models\\".$class;
+            $xml = $this->makeRequest($type, $stamp, $delStamp);
+            if(!isset($xml, $xml->Data)) {
                 throw new SamoException('Error loading');
             }
-            $newObjectArray = array();
-            $delObjectArray = array();
-            foreach ($xml->Data->$type as $row) {
-                $model = new $class($row);
-                if($model->getId() !== null) {
-                    if($model->getStatus() == "D")
-                        $delObjectArray[] = $model;
-                    else
-                        $newObjectArray[] = $model;
-                }
-            }
-            if($get_deleted)
-                return $delObjectArray;
-            else
-                return $newObjectArray;
+            return new Result($xml->Data, $class, $type);
         } else
             throw new SamoException('Wrong type');
 
@@ -104,12 +90,13 @@ class Client {
      * @return \SimpleXMLElement
      * @throws Exception\SamoException
      */
-    private function makeRequest($service_type)
+    private function makeRequest($service_type, $stamp, $delStamp)
     {
         $client = new GuzzleClient();
-        $res = $client->get($this->_url, [
-            'query' => ['oauth_token' => $this->_token, 'samo_action' => 'reference', 'type' => $service_type]
-        ]);
+        $this->_query['laststamp'] = $stamp;
+        $this->_query['delstamp'] = $delStamp;
+        $this->_query['type'] = $service_type;
+        $res = $client->get($this->_url, ['query' =>  $this->_query]);
         if($res->getStatusCode() == "200") {
             try {
                 return $res->xml();
