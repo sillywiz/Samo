@@ -82,14 +82,14 @@ class Client {
      * @throws Exception\MainException
      */
     private function setObject($type, $stamp, $delStamp) {
-        $class = $this->getClassName($type);
-        if(isset($class)) {
-            $class = "Fruitware\\Samo\\Models\\".$class;
+        $classAndNode = $this->getClassNameAndNodeName($type);
+        if(count($classAndNode)) {
+            $class = "Fruitware\\Samo\\Models\\".$classAndNode["class"];
             $xml = $this->makeRequest($type, $stamp, $delStamp);
             if(!isset($xml, $xml->Data)) {
                 throw new MainException('Error loading');
             }
-            return new Result($xml->Data, $class, $type);
+            return new Result($xml->Data, $class, $classAndNode["nodeName"]);
         } else
             throw new MainException('Wrong type');
 
@@ -121,56 +121,56 @@ class Client {
 
     /**
      * @param $type
-     * @return null|string
+     * @return array
      */
-    private function getClassName($type) {
+    private function getClassNameAndNodeName($type) {
         switch($type) {
             case Client::GET_ALLOCATIONS:
-                return "Allocation";
+                return array("class" => "Allocation", "nodeName" => "htplace");
                 break;
             case Client::GET_CURRENCIES:
-                return "Currency";
+                return array("class" => "Currency", "nodeName" => "currency");
                 break;
             case Client::GET_HOTELS:
-                return "Hotel";
+                return array("class" => "Hotel", "nodeName" => "hotel");
                 break;
             case Client::GET_HOTELSALEPRICES:
-                return "HotelsalePrice";
+                return array("class" => "HotelsalePrice", "nodeName" => "hprice");
                 break;
             case Client::GET_HOTELSTARS:
-                return "HotelStar";
+                return array("class" => "HotelStar", "nodeName" => "star");
                 break;
             case Client::GET_MEALTYPE:
-                return "MealType";
+                return array("class" => "MealType", "nodeName" => "meal");
                 break;
             case Client::GET_REGIONS:
-                return "Region";
+                return array("class" => "Region", "nodeName" => "region");
                 break;
             case Client::GET_RELEASES:
-                return "Release";
+                return array("class" => "Release", "nodeName" => "release");
                 break;
             case Client::GET_ROOMTTYPES:
-                return "RoomType";
+                return array("class" => "RoomType", "nodeName" => "room");
                 break;
             case Client::GET_SERVICES:
-                return "Service";
+                return array("class" => "Service", "nodeName" => "service");
                 break;
             case Client::GET_SERVICETYPES:
-                return "ServiceType";
+                return array("class" => "ServiceType", "nodeName" => "servtype");
                 break;
             case Client::GET_SPOS:
-                return "Spo";
+                return array("class" => "Spo", "nodeName" => "spos");
                 break;
             case Client::GET_STATES:
-                return "State";
+                return array("class" => "State", "nodeName" => "state");
                 break;
             case Client::GET_STOPSALES:
-                return "StopSale";
+                return array("class" => "StopSale", "nodeName" => "stopsale");
                 break;
             case Client::GET_TOWNS:
-                return "Town";
+                return array("class" => "Town", "nodeName" => "town");
                 break;
         }
-        return null;
+        return [];
     }
 }

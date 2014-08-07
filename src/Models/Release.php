@@ -7,7 +7,7 @@ namespace Fruitware\Samo\Models;
  * Class Release
  * @package Fruitware\Samo\Models
  */
-class Release extends CommonName {
+class Release extends Common {
 
     /**
      * Begin date

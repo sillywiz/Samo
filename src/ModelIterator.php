@@ -2,6 +2,8 @@
 
 namespace Fruitware\Samo;
 
+use Fruitware\Samo\Exception\MainException;
+use Fruitware\Samo\Exception;
 
 class ModelIterator extends \ArrayIterator
 {
@@ -31,11 +33,52 @@ class ModelIterator extends \ArrayIterator
 
     /**
      * Return the current element
-     * @return object Can return any type.
+     * @return Models\Allocation|Models\Currency|Models\Hotel|Models\HotelsalePrice|Models\HotelStar|
+     * @return Models\MealType|Models\Region|Models\Release|Models\RoomType|Models\Service|
+     * @return Models\ServiceType|Models\Spo|Models\State|Models\StopSale|Models\Town
      */
     public function current()
     {
         return new $this->_className($this->_nodeArray[$this->_position]);
+    }
+
+    /**
+     * @param string $index
+     * @return bool
+     */
+    public function offsetExists($index)
+    {
+        return isset($this->_nodeArray[$index]);
+    }
+
+    /**
+     * @param string $index
+     * @return Models\Allocation|Models\Currency|Models\Hotel|Models\HotelsalePrice|Models\HotelStar|
+     * @return Models\MealType|Models\Region|Models\Release|Models\RoomType|Models\Service|
+     * @return Models\ServiceType|Models\Spo|Models\State|Models\StopSale|Models\Town
+     */
+    public function offsetGet($index)
+    {
+        return new $this->_className($this->_nodeArray[$index]);
+    }
+
+    /**
+     * @param string $index
+     * @param string $newval
+     * @throws Exception\MainException
+     */
+    public function offsetSet($index, $newval)
+    {
+        throw new MainException("You can not set data");
+    }
+
+    /**
+     * @param string $index
+     * @throws Exception\MainException
+     */
+    public function offsetUnset($index)
+    {
+        throw new MainException("You can not remove data");
     }
 
     /**
@@ -73,9 +116,5 @@ class ModelIterator extends \ArrayIterator
     public function rewind()
     {
         $this->_position = 0;
-    }
-
-    public function getClassName() {
-        return $this->_className;
     }
 }

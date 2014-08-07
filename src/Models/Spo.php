@@ -7,7 +7,7 @@ namespace Fruitware\Samo\Models;
  * Class Spo
  * @package Fruitware\Samo\Models
  */
-class Spo extends CommonName {
+class Spo extends Common {
 
     /**
      * Date of issue SPO
@@ -21,8 +21,8 @@ class Spo extends CommonName {
      * Use as contact prices
      * @return bool
      */
-    public function getUseContact() {
-        return (bool)$this->_node['usecontact'];
+    public function getUseContract() {
+        return (bool)$this->_node['usecontract'];
     }
 
     /**
@@ -47,5 +47,12 @@ class Spo extends CommonName {
      */
     public function getUseSalePrice() {
         return (bool)$this->_node['usesaleprice'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getNote() {
+        return (string)$this->_node['note'];
     }
 }

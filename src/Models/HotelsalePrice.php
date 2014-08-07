@@ -86,7 +86,7 @@ class HotelsalePrice extends Common {
      * @return int
      */
     public function getSpoId() {
-        return $this->checkNumber($this->_node['spo']);
+        return $this->checkNumber($this->_node['spos']);
     }
 
     /**

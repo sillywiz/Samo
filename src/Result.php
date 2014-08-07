@@ -28,14 +28,14 @@ class Result {
     }
 
     /**
-     * @return ModelIterator
+     * @return null|ModelIterator
      */
     public function getUpdatedList() {
         return $this->findByStatus('');
     }
 
     /**
-     * @return ModelIterator
+     * @return null|ModelIterator
      */
     public function getDeletedList() {
         return $this->findByStatus('D');
@@ -45,7 +45,7 @@ class Result {
      * @return null|string
      */
     public function getLastStampUpdated() {
-        $result = $this->_data->xpath("//$this->_nodeName[@status=''][@inc!='-2147483647'][last()]/@stamp");
+        $result = $this->_data->xpath("//$this->_nodeName[normalize-space(@status)=''][@inc!='-2147483647'][last()]/@stamp");
         return count($result) ? $result[0] : null;
     }
 
@@ -53,7 +53,7 @@ class Result {
      * @return null|string
      */
     public function getLastStampDeleted() {
-        $result = $this->_data->xpath("//$this->_nodeName[@status='D'][@inc!='-2147483647'][last()]/@stamp");
+        $result = $this->_data->xpath("//$this->_nodeName[normalize-space(@status)='D'][@inc!='-2147483647'][last()]/@stamp");
         return count($result) ? $result[0] : null;
     }
 
@@ -64,7 +64,7 @@ class Result {
     private function findByStatus($queryStr) {
         if(count($this->_data))
         {
-            $result_nodes = $this->_data->xpath("//$this->_nodeName[@status='".$queryStr."'][@inc!='-2147483647']");
+            $result_nodes = $this->_data->xpath("//$this->_nodeName[normalize-space(@status)='".$queryStr."'][@inc!='-2147483647']");
             return new ModelIterator($result_nodes, $this->_className);
         }
         return null;

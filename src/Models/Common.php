@@ -30,7 +30,7 @@ abstract class Common {
      * @return string
      */
     public function getStatus() {
-        return (string)$this->_node['status'];
+        return trim((string)$this->_node['status']);
     }
 
     /**

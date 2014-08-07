@@ -7,7 +7,7 @@ namespace Fruitware\Samo\Models;
  * Class StopSale
  * @package Fruitware\Samo\Models
  */
-class StopSale extends CommonName {
+class StopSale extends Common {
 
     /**
      * Begin date of stopsale
@@ -55,5 +55,12 @@ class StopSale extends CommonName {
      */
     public function getMealId() {
         return $this->checkNumber($this->_node['meal']);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCheckIn() {
+        return (bool)$this->_node['checkin'];
     }
 }
