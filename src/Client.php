@@ -69,19 +69,9 @@ class Client {
      * @param string $stamp
      * @param string $delStamp
      * @return Result
-     */
-    public function getResult($type, $stamp, $delStamp) {
-        return $this->setObject($type, $stamp, $delStamp);
-    }
-
-    /**
-     * @param $type
-     * @param $stamp
-     * @param $delStamp
-     * @return Result
      * @throws Exception\MainException
      */
-    private function setObject($type, $stamp, $delStamp) {
+    public function getResult($type, $stamp, $delStamp) {
         $classAndNode = $this->getClassNameAndNodeName($type);
         if(count($classAndNode)) {
             $class = "Fruitware\\Samo\\Models\\".$classAndNode["class"];
