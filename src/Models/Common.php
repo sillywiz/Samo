@@ -2,7 +2,7 @@
 
 namespace Fruitware\Samo\Models;
 
-class Common {
+abstract class Common {
 
     /**
      * @var \SimpleXMLElement
@@ -41,10 +41,14 @@ class Common {
         return (string)$this->_node['stamp'];
     }
 
+    /**
+     * @param string $number
+     * @return int
+     */
     protected  function checkNumber($number) {
         $result = (int)$number;
         if($result > 0)
             return $result;
-        return null;
+        return 0;
     }
 }

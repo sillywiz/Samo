@@ -3,13 +3,14 @@
 namespace Fruitware\Samo\Models;
 
 
-class CommonName extends Common {
+abstract class CommonName extends Common {
 
     /**
      * Name
      * @return mixed
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->_node['name'];
     }
 
@@ -17,7 +18,8 @@ class CommonName extends Common {
      * Latin name
      * @return mixed
      */
-    public function getLatinName() {
+    public function getLatinName()
+    {
         return $this->_node['lname'];
     }
 

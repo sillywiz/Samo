@@ -4,7 +4,8 @@ namespace Fruitware\Samo;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
-use Fruitware\Samo\Exception\SamoException;
+use Fruitware\Samo\Exception\MainException;
+use Fruitware\Samo\Exception\ParseException;
 use Fruitware\Samo\Models\Result;
 
 class Client {
@@ -39,10 +40,19 @@ class Client {
 
     const GET_TOWNS = "town";
 
+    /**
+     * @var string
+     */
     private $_token = "";
 
+    /**
+     * @var string
+     */
     private $_url = "http://94.70.244.241/incoming/export/default.php";
 
+    /**
+     * @var array
+     */
     private $_query =[];
 
     /**
@@ -55,7 +65,7 @@ class Client {
     }
 
     /**
-     * @param $type
+     * @param string $type
      * @param string $stamp
      * @param string $delStamp
      * @return Result
@@ -69,7 +79,7 @@ class Client {
      * @param $stamp
      * @param $delStamp
      * @return Result
-     * @throws Exception\SamoException
+     * @throws Exception\MainException
      */
     private function setObject($type, $stamp, $delStamp) {
         $class = $this->getClassName($type);
@@ -77,34 +87,36 @@ class Client {
             $class = "Fruitware\\Samo\\Models\\".$class;
             $xml = $this->makeRequest($type, $stamp, $delStamp);
             if(!isset($xml, $xml->Data)) {
-                throw new SamoException('Error loading');
+                throw new MainException('Error loading');
             }
             return new Result($xml->Data, $class, $type);
         } else
-            throw new SamoException('Wrong type');
+            throw new MainException('Wrong type');
 
     }
 
     /**
-     * @param $service_type
+     * @param $serviceType
+     * @param string $stamp
+     * @param string $delStamp
      * @return \SimpleXMLElement
-     * @throws Exception\SamoException
+     * @throws ParseException|MainException
      */
-    private function makeRequest($service_type, $stamp, $delStamp)
+    private function makeRequest($serviceType, $stamp, $delStamp)
     {
         $client = new GuzzleClient();
         $this->_query['laststamp'] = $stamp;
         $this->_query['delstamp'] = $delStamp;
-        $this->_query['type'] = $service_type;
+        $this->_query['type'] = $serviceType;
         $res = $client->get($this->_url, ['query' =>  $this->_query]);
         if($res->getStatusCode() == "200") {
             try {
                 return $res->xml();
-            } catch(SamoException $e) {
-                throw new SamoException('Error loading xml');
+            } catch(ParseException $e) {
+                throw new MainException('Error loading xml');
             }
         }
-        throw new SamoException('Error loading');
+        throw new MainException('Error loading');
     }
 
     /**
