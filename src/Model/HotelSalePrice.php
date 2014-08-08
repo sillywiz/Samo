@@ -13,7 +13,8 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * ID of hotel
      * @return int
      */
-    public function getHotelID() {
+    public function getHotelID()
+    {
         return $this->checkNumber($this->_node['hotel']);
     }
 
@@ -21,7 +22,8 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * ID of room
      * @return int
      */
-    public function getRoomID() {
+    public function getRoomID()
+    {
         return $this->checkNumber($this->_node['room']);
     }
 
@@ -29,7 +31,8 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * ID of allocation
      * @return int
      */
-    public function getAllocationId() {
+    public function getAllocationId()
+    {
         return $this->checkNumber($this->_node['htplace']);
     }
 
@@ -37,7 +40,8 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * ID of meal
      * @return int
      */
-    public function getMealId() {
+    public function getMealId()
+    {
         return $this->checkNumber($this->_node['meal']);
     }
 
@@ -45,31 +49,35 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * Begin of price season
      * @return int
      */
-    public function getBeginDate() {
+    public function getBeginDate()
+    {
         return new \DateTime($this->_node['datebeg']);
     }
 
     /**
      * End of price season
-     * @return int
+     * @return \DateTime
      */
-    public function getEndDate() {
+    public function getEndDate()
+    {
         return new \DateTime($this->_node['dateend']);
     }
 
     /**
      * Reservation from
-     * @return int
+     * @return \DateTime
      */
-    public function getReservationFrom() {
+    public function getReservationFrom()
+    {
         return new \DateTime($this->_node['rqdatebeg']);
     }
 
     /**
      * Reservation till
-     * @return int
+     * @return \DateTime
      */
-    public function getReservationTill() {
+    public function getReservationTill()
+    {
         return new \DateTime($this->_node['rqdateend']);
     }
 
@@ -77,15 +85,17 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * Staying nights
      * @return int
      */
-    public function getNightsCount() {
-        return (int)$this->_node['nights'];
+    public function getNightsCount()
+    {
+        return (int) $this->_node['nights'];
     }
 
     /**
      * ID of SPO
      * @return int
      */
-    public function getSpoId() {
+    public function getSpoId()
+    {
         return $this->checkNumber($this->_node['spos']);
     }
 
@@ -99,7 +109,8 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * 6 = Discount
      * @return int
      */
-    public function getSpoTypeId() {
+    public function getSpoTypeId()
+    {
         return $this->checkNumber($this->_node['spotype']);
     }
 
@@ -113,7 +124,8 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * 5 = Calculate without max price from the edge
      * @return int
      */
-    public function getSpoSubTypeId() {
+    public function getSpoSubTypeId()
+    {
         return $this->checkNumber($this->_node['sposubtype']);
     }
 
@@ -121,7 +133,8 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * For SPO “Accommodation”
      * @return int
      */
-    public function getSpoAccommodationId() {
+    public function getSpoAccommodationId()
+    {
         return $this->checkNumber($this->_node['rroom']);
     }
 
@@ -129,7 +142,8 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * From SPO “”
      * @return int
      */
-    public function getFromSpoId() {
+    public function getFromSpoId()
+    {
         return $this->checkNumber($this->_node['rhtplace']);
     }
 
@@ -137,79 +151,89 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * For SPO “Meal plan”
      * @return int
      */
-    public function getSpoMealPlan() {
-        return (int)$this->_node['rmeal'];
+    public function getSpoMealPlan()
+    {
+        return (int) $this->_node['rmeal'];
     }
 
     /**
      * For SPO “Rotation”
      * @return int
      */
-    public function getSpoRotation() {
-        return (int)$this->_node['rnights'];
+    public function getSpoRotation()
+    {
+        return (int) $this->_node['rnights'];
     }
 
     /**
      * Price
      * @return float
      */
-    public function getPrice() {
-        return (float)$this->_node['price'];
+    public function getPrice()
+    {
+        return (float) $this->_node['price'];
     }
 
     /**
      * Discount if percent
      * @return float
      */
-    public function getDiscountPercent() {
-        return (float)$this->_node['discount'];
+    public function getDiscountPercent()
+    {
+        return (float) $this->_node['discount'];
     }
 
     /**
      * Discount in money
      * @return float
      */
-    public function getDiscountMoney() {
-        return (float)$this->_node['discountmoney'];
+    public function getDiscountMoney()
+    {
+        return (float) $this->_node['discountmoney'];
     }
 
     /**
      * ID of curency
      * @return int
      */
-    public function getCurrencyId() {
+    public function getCurrencyId()
+    {
         return $this->checkNumber($this->_node['currency']);
     }
 
     /**
      * Check-in date from
-     * @return int
+     * @return \DateTime
      */
-    public function getCheckInFrom() {
+    public function getCheckInFrom()
+    {
         return new \DateTime($this->_node['dateinfrom']);
     }
 
     /**
      * Check-out date from
-     * @return int
+     * @return \DateTime
      */
-    public function getCheckOutFrom() {
+    public function getCheckOutFrom()
+    {
         return new \DateTime($this->_node['dateoutfrom']);
     }
 
     /**
      * Check-in date till
-     * @return int
+     * @return \DateTime
      */
-    public function getCheckOutTInill() {
+    public function getCheckOutTInill()
+    {
         return new \DateTime($this->_node['dateintil']);
     }
 
     /**
      * Check-out date till
-     * @return int
+     * @return \DateTime
      */
-    public function getCheckOutTill() {
+    public function getCheckOutTill()
+    {
         return new \DateTime($this->_node['dateouttil']);
     }
 
@@ -217,40 +241,45 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * Use as “checkin” price
      * @return bool
      */
-    public function getUseAsCheckInPrice() {
-        return (bool)$this->_node['useascheckin'];
+    public function getUseAsCheckInPrice()
+    {
+        return (bool) $this->_node['useascheckin'];
     }
 
     /**
      * Days before check-in from
      * @return int
      */
-    public function getDaysCheckInFrom() {
-        return (int)$this->_node['rqdaysfrom'];
+    public function getDaysCheckInFrom()
+    {
+        return (int) $this->_node['rqdaysfrom'];
     }
 
     /**
      * Days before check-in till
      * @return int
      */
-    public function getDaysCheckInTill() {
-        return (int)$this->_node['rqdaystill'];
+    public function getDaysCheckInTill()
+    {
+        return (int) $this->_node['rqdaystill'];
     }
 
     /**
      * Nights from
      * @return int
      */
-    public function getNightsFrom() {
-        return (int)$this->_node['nightsfrom'];
+    public function getNightsFrom()
+    {
+        return (int) $this->_node['nightsfrom'];
     }
 
     /**
      * Night till
      * @return int
      */
-    public function getNightsTill() {
-        return (int)$this->_node['nightstill'];
+    public function getNightsTill()
+    {
+        return (int) $this->_node['nightstill'];
     }
 
     /**
@@ -261,39 +290,44 @@ class HotelSalePrice extends CommonAbstract implements CommonInterface
      * 1 = By check-in (season dates contains check-in date)
      * @return bool
      */
-    public function getBySpoRotation() {
-        return (bool)$this->_node['oncheckin'];
+    public function getBySpoRotation()
+    {
+        return (bool) $this->_node['oncheckin'];
     }
 
     /**
      * Supplement for adult
      * @return float
      */
-    public function getSupplementAdult() {
-        return (float)$this->_node['adult'];
+    public function getSupplementAdult()
+    {
+        return (float) $this->_node['adult'];
     }
 
     /**
      * Supplement for child with bed
      * @return float
      */
-    public function getSupplementChildWithBed() {
-        return (float)$this->_node['child'];
+    public function getSupplementChildWithBed()
+    {
+        return (float) $this->_node['child'];
     }
 
     /**
      * Supplement for child without bed
      * @return float
      */
-    public function getSupplementChildNoBed() {
-        return (float)$this->_node['nobedchild'];
+    public function getSupplementChildNoBed()
+    {
+        return (float) $this->_node['nobedchild'];
     }
 
     /**
      * Week days
      * @return string
      */
-    public function getDays() {
-        return (string)$this->_node['days'];
+    public function getDays()
+    {
+        return (string) $this->_node['days'];
     }
 }

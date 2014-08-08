@@ -2,7 +2,6 @@
 
 namespace Fruitware\Samo\Models;
 
-
 abstract class CommonNameAbstract extends CommonAbstract
 {
     /**

@@ -13,7 +13,8 @@ class StopSale extends CommonAbstract implements CommonInterface
      * Begin date of stopsale
      * @return \DateTime
      */
-    public function getBeginDate() {
+    public function getBeginDate()
+    {
         return new \DateTime($this->_node['datebeg']);
     }
 
@@ -21,7 +22,8 @@ class StopSale extends CommonAbstract implements CommonInterface
      * End date of stopsale
      * @return \DateTime
      */
-    public function getEndDate() {
+    public function getEndDate()
+    {
         return new \DateTime($this->_node['dateend']);
     }
 
@@ -29,7 +31,8 @@ class StopSale extends CommonAbstract implements CommonInterface
      * ID of hotel
      * @return int
      */
-    public function getHotelId() {
+    public function getHotelId()
+    {
         return $this->checkNumber($this->_node['hotel']);
     }
 
@@ -37,7 +40,8 @@ class StopSale extends CommonAbstract implements CommonInterface
      * ID of room type
      * @return int
      */
-    public function getRoomId() {
+    public function getRoomId()
+    {
         return $this->checkNumber($this->_node['room']);
     }
 
@@ -45,7 +49,8 @@ class StopSale extends CommonAbstract implements CommonInterface
      * ID of allocation type
      * @return int
      */
-    public function getAllocationId() {
+    public function getAllocationId()
+    {
         return $this->checkNumber($this->_node['htplace']);
     }
 
@@ -53,14 +58,16 @@ class StopSale extends CommonAbstract implements CommonInterface
      * ID of meal type
      * @return int
      */
-    public function getMealId() {
+    public function getMealId()
+    {
         return $this->checkNumber($this->_node['meal']);
     }
 
     /**
      * @return bool
      */
-    public function getCheckIn() {
-        return (bool)$this->_node['checkin'];
+    public function getCheckIn()
+    {
+        return (bool) $this->_node['checkin'];
     }
 }

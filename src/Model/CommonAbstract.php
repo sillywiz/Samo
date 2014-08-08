@@ -7,12 +7,13 @@ abstract class CommonAbstract implements CommonInterface
     /**
      * @var \SimpleXMLElement
      */
-    protected  $_node;
+    protected $_node;
 
     /**
      * @param \SimpleXMLElement $node
      */
-    public function __construct(\SimpleXMLElement $node) {
+    public function __construct(\SimpleXMLElement $node)
+    {
         $this->_node = $node;
     }
 
@@ -20,7 +21,8 @@ abstract class CommonAbstract implements CommonInterface
      * ID of record
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->checkNumber($this->_node['inc']);
     }
 
@@ -29,25 +31,29 @@ abstract class CommonAbstract implements CommonInterface
      * “D” for delete
      * @return string
      */
-    public function getStatus() {
-        return trim((string)$this->_node['status']);
+    public function getStatus()
+    {
+        return trim((string) $this->_node['status']);
     }
 
     /**
      * Timestamp of record
      * @return string
      */
-    public function getStamp() {
-        return (string)$this->_node['stamp'];
+    public function getStamp()
+    {
+        return (string) $this->_node['stamp'];
     }
 
     /**
-     * @param string $number
+     * @param  string $number
      * @return int
      */
-    protected  function checkNumber($number) {
-        $result = (int)$number;
+    protected function checkNumber($number)
+    {
+        $result = (int) $number;
         if($result > 0)
+
             return $result;
         return 0;
     }

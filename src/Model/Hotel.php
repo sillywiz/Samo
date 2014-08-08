@@ -13,7 +13,8 @@ class Hotel extends CommonNameAbstract implements CommonInterface
      * ID of star
      * @return int
      */
-    public function getStarID() {
+    public function getStarID()
+    {
         return $this->checkNumber($this->_node['star']);
     }
 
@@ -21,7 +22,8 @@ class Hotel extends CommonNameAbstract implements CommonInterface
      * IF of town
      * @return int
      */
-    public function getTownID() {
+    public function getTownID()
+    {
         return $this->checkNumber($this->_node['town']);
     }
 }

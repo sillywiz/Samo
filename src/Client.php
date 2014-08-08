@@ -3,10 +3,8 @@
 namespace Fruitware\Samo;
 
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Message\Response;
 use Fruitware\Samo\Exception\MainException;
 use Fruitware\Samo\Exception\ParseException;
-use Fruitware\Samo\Result;
 
 class Client
 {
@@ -72,9 +70,9 @@ class Client
     }
 
     /**
-     * @param string $type
-     * @param string $stamp
-     * @param string $delStamp
+     * @param  string                  $type
+     * @param  string                  $stamp
+     * @param  string                  $delStamp
      * @return Result
      * @throws Exception\MainException
      */
@@ -83,16 +81,17 @@ class Client
         $classAndNode = $this->getClassNameAndNodeName($type);
         $class = "Fruitware\\Samo\\Models\\".$classAndNode["class"];
         $xml = $this->makeRequest($type, $stamp, $delStamp);
-        if(!isset($xml, $xml->Data)) {
+        if (!isset($xml, $xml->Data)) {
             throw new MainException('Error loading');
         }
+
         return new Result($xml->Data, $class, $classAndNode["nodeName"]);
     }
 
     /**
      * @param $serviceType
-     * @param string $stamp
-     * @param string $delStamp
+     * @param  string                       $stamp
+     * @param  string                       $delStamp
      * @return \SimpleXMLElement
      * @throws ParseException|MainException
      */
@@ -104,10 +103,10 @@ class Client
         $this->_query['type'] = $serviceType;
         $url = "http://".$this->_ip.$this->_url;
         $res = $client->get($url, ['query' =>  $this->_query]);
-        if($res->getStatusCode() == "200") {
+        if ($res->getStatusCode() == "200") {
             try {
                 return $res->xml();
-            } catch(ParseException $e) {
+            } catch (ParseException $e) {
                 throw new MainException('Error loading xml', 0, $e);
             }
         }
@@ -119,8 +118,9 @@ class Client
      * @return array
      * @throws Exception\MainException
      */
-    private function getClassNameAndNodeName($type) {
-        switch($type) {
+    private function getClassNameAndNodeName($type)
+    {
+        switch ($type) {
             case Client::GET_ALLOCATIONS:
                 return ["class" => "Allocation", "nodeName" => "htplace"];
                 break;

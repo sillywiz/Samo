@@ -9,7 +9,6 @@
 
 namespace Fruitware\Samo\Models;
 
-
 interface CommonInterface
 {
     public function getId();

@@ -13,7 +13,8 @@ class Town extends CommonNameAbstract implements CommonInterface
      * ID of state
      * @return int
      */
-    public function getStateID() {
+    public function getStateID()
+    {
         return $this->checkNumber($this->_node['state']);
     }
 
@@ -21,7 +22,8 @@ class Town extends CommonNameAbstract implements CommonInterface
      * ID of region
      * @return int
      */
-    public function getRegionID() {
+    public function getRegionID()
+    {
         return $this->checkNumber($this->_node['region']);
     }
 }

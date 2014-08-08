@@ -13,7 +13,8 @@ class Service extends CommonNameAbstract implements CommonInterface
      * Type of service
      * @return int
      */
-    public function getServiceTypeId() {
+    public function getServiceTypeId()
+    {
         return $this->checkNumber($this->_node['servtype']);
     }
 }

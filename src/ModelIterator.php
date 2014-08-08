@@ -3,7 +3,6 @@
 namespace Fruitware\Samo;
 
 use Fruitware\Samo\Exception\MainException;
-use Fruitware\Samo\Exception;
 
 class ModelIterator extends \ArrayIterator
 {
@@ -41,7 +40,7 @@ class ModelIterator extends \ArrayIterator
     }
 
     /**
-     * @param string $index
+     * @param  string $index
      * @return bool
      */
     public function offsetExists($index)
@@ -50,7 +49,7 @@ class ModelIterator extends \ArrayIterator
     }
 
     /**
-     * @param string $index
+     * @param  string                 $index
      * @return Models\CommonInterface
      */
     public function offsetGet($index)
@@ -59,8 +58,8 @@ class ModelIterator extends \ArrayIterator
     }
 
     /**
-     * @param string $index
-     * @param string $newval
+     * @param  string                  $index
+     * @param  string                  $newval
      * @throws Exception\MainException
      */
     public function offsetSet($index, $newval)
@@ -69,7 +68,7 @@ class ModelIterator extends \ArrayIterator
     }
 
     /**
-     * @param string $index
+     * @param  string                  $index
      * @throws Exception\MainException
      */
     public function offsetUnset($index)
@@ -98,7 +97,7 @@ class ModelIterator extends \ArrayIterator
     /**
      * Checks if current position is valid
      * @return boolean The return value will be casted to boolean and then evaluated.
-     * Returns true on success or false on failure.
+     *                 Returns true on success or false on failure.
      */
     public function valid()
     {

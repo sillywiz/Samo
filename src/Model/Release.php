@@ -13,7 +13,8 @@ class Release extends CommonAbstract implements CommonInterface
      * Begin date
      * @return \DateTime
      */
-    public function getBeginDate() {
+    public function getBeginDate()
+    {
         return new \DateTime($this->_node['datebeg']);
     }
 
@@ -21,7 +22,8 @@ class Release extends CommonAbstract implements CommonInterface
      * End date
      * @return \DateTime
      */
-    public function getEndDate() {
+    public function getEndDate()
+    {
         return new \DateTime($this->_node['dateend']);
     }
 
@@ -29,7 +31,8 @@ class Release extends CommonAbstract implements CommonInterface
      * Count of days
      * @return int
      */
-    public function getDays() {
-        return (int)$this->_node['days'];
+    public function getDays()
+    {
+        return (int) $this->_node['days'];
     }
 }
