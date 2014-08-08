@@ -4,8 +4,8 @@ namespace Fruitware\Samo;
 
 use Fruitware\Samo\ModelIterator;
 
-class Result {
-
+class Result
+{
     /**
      * @var \SimpleXMLElement
      */

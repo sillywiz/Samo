@@ -8,8 +8,8 @@ use Fruitware\Samo\Exception\MainException;
 use Fruitware\Samo\Exception\ParseException;
 use Fruitware\Samo\Result;
 
-class Client {
-
+class Client
+{
     const GET_ALLOCATIONS = "htplace";
 
     const GET_CURRENCIES = "currency";
@@ -48,7 +48,12 @@ class Client {
     /**
      * @var string
      */
-    private $_url = "http://94.70.244.241/incoming/export/default.php";
+    private $_ip = "";
+
+    /**
+     * @var string
+     */
+    private $_url = "/incoming/export/default.php";
 
     /**
      * @var array
@@ -56,11 +61,13 @@ class Client {
     private $_query =[];
 
     /**
-     * @param $token
+     * @param string $ip
+     * @param string $token
      */
-    public function __construct($token)
+    public function __construct($ip, $token)
     {
         $this->_token = $token;
+        $this->_ip = $ip;
         $this->_query = ['oauth_token' => $this->_token, 'samo_action' => 'reference'];
     }
 
@@ -71,18 +78,15 @@ class Client {
      * @return Result
      * @throws Exception\MainException
      */
-    public function getResult($type, $stamp, $delStamp) {
+    public function getResult($type, $stamp, $delStamp)
+    {
         $classAndNode = $this->getClassNameAndNodeName($type);
-        if(count($classAndNode)) {
-            $class = "Fruitware\\Samo\\Models\\".$classAndNode["class"];
-            $xml = $this->makeRequest($type, $stamp, $delStamp);
-            if(!isset($xml, $xml->Data)) {
-                throw new MainException('Error loading');
-            }
-            return new Result($xml->Data, $class, $classAndNode["nodeName"]);
-        } else
-            throw new MainException('Wrong type');
-
+        $class = "Fruitware\\Samo\\Models\\".$classAndNode["class"];
+        $xml = $this->makeRequest($type, $stamp, $delStamp);
+        if(!isset($xml, $xml->Data)) {
+            throw new MainException('Error loading');
+        }
+        return new Result($xml->Data, $class, $classAndNode["nodeName"]);
     }
 
     /**
@@ -98,12 +102,14 @@ class Client {
         $this->_query['laststamp'] = $stamp;
         $this->_query['delstamp'] = $delStamp;
         $this->_query['type'] = $serviceType;
-        $res = $client->get($this->_url, ['query' =>  $this->_query]);
+        $url = "http://".$this->_ip.$this->_url;
+        $res = $client->get($url, ['query' =>  $this->_query]);
         if($res->getStatusCode() == "200") {
             try {
+                throw new ParseException("111");
                 return $res->xml();
             } catch(ParseException $e) {
-                throw new MainException('Error loading xml');
+                throw new MainException('Error loading xml', 0, $e);
             }
         }
         throw new MainException('Error loading');
@@ -112,55 +118,56 @@ class Client {
     /**
      * @param $type
      * @return array
+     * @throws Exception\MainException
      */
     private function getClassNameAndNodeName($type) {
         switch($type) {
             case Client::GET_ALLOCATIONS:
-                return array("class" => "Allocation", "nodeName" => "htplace");
+                return ["class" => "Allocation", "nodeName" => "htplace"];
                 break;
             case Client::GET_CURRENCIES:
-                return array("class" => "Currency", "nodeName" => "currency");
+                return ["class" => "Currency", "nodeName" => "currency"];
                 break;
             case Client::GET_HOTELS:
-                return array("class" => "Hotel", "nodeName" => "hotel");
+                return ["class" => "Hotel", "nodeName" => "hotel"];
                 break;
             case Client::GET_HOTELSALEPRICES:
-                return array("class" => "HotelsalePrice", "nodeName" => "hprice");
+                return ["class" => "HotelsalePrice", "nodeName" => "hprice"];
                 break;
             case Client::GET_HOTELSTARS:
-                return array("class" => "HotelStar", "nodeName" => "star");
+                return ["class" => "HotelStar", "nodeName" => "star"];
                 break;
             case Client::GET_MEALTYPE:
-                return array("class" => "MealType", "nodeName" => "meal");
+                return ["class" => "MealType", "nodeName" => "meal"];
                 break;
             case Client::GET_REGIONS:
-                return array("class" => "Region", "nodeName" => "region");
+                return ["class" => "Region", "nodeName" => "region"];
                 break;
             case Client::GET_RELEASES:
-                return array("class" => "Release", "nodeName" => "release");
+                return ["class" => "Release", "nodeName" => "release"];
                 break;
             case Client::GET_ROOMTTYPES:
-                return array("class" => "RoomType", "nodeName" => "room");
+                return ["class" => "RoomType", "nodeName" => "room"];
                 break;
             case Client::GET_SERVICES:
-                return array("class" => "Service", "nodeName" => "service");
+                return ["class" => "Service", "nodeName" => "service"];
                 break;
             case Client::GET_SERVICETYPES:
-                return array("class" => "ServiceType", "nodeName" => "servtype");
+                return ["class" => "ServiceType", "nodeName" => "servtype"];
                 break;
             case Client::GET_SPOS:
-                return array("class" => "Spo", "nodeName" => "spos");
+                return ["class" => "Spo", "nodeName" => "spos"];
                 break;
             case Client::GET_STATES:
-                return array("class" => "State", "nodeName" => "state");
+                return ["class" => "State", "nodeName" => "state"];
                 break;
             case Client::GET_STOPSALES:
-                return array("class" => "StopSale", "nodeName" => "stopsale");
+                return ["class" => "StopSale", "nodeName" => "stopsale"];
                 break;
             case Client::GET_TOWNS:
-                return array("class" => "Town", "nodeName" => "town");
+                return ["class" => "Town", "nodeName" => "town"];
                 break;
         }
-        return [];
+        throw new MainException('Wrong type');
     }
 }

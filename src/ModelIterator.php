@@ -33,9 +33,7 @@ class ModelIterator extends \ArrayIterator
 
     /**
      * Return the current element
-     * @return Models\Allocation|Models\Currency|Models\Hotel|Models\HotelsalePrice|Models\HotelStar|
-     * @return Models\MealType|Models\Region|Models\Release|Models\RoomType|Models\Service|
-     * @return Models\ServiceType|Models\Spo|Models\State|Models\StopSale|Models\Town
+     * @return Models\CommonInterface
      */
     public function current()
     {
@@ -53,9 +51,7 @@ class ModelIterator extends \ArrayIterator
 
     /**
      * @param string $index
-     * @return Models\Allocation|Models\Currency|Models\Hotel|Models\HotelsalePrice|Models\HotelStar|
-     * @return Models\MealType|Models\Region|Models\Release|Models\RoomType|Models\Service|
-     * @return Models\ServiceType|Models\Spo|Models\State|Models\StopSale|Models\Town
+     * @return Models\CommonInterface
      */
     public function offsetGet($index)
     {
