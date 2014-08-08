@@ -106,7 +106,6 @@ class Client
         $res = $client->get($url, ['query' =>  $this->_query]);
         if($res->getStatusCode() == "200") {
             try {
-                throw new ParseException("111");
                 return $res->xml();
             } catch(ParseException $e) {
                 throw new MainException('Error loading xml', 0, $e);
