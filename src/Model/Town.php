@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=town
  * Class Town
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class Town extends CommonNameAbstract implements CommonInterface
 {

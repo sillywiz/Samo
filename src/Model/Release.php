@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=release
  * Class Release
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class Release extends CommonAbstract implements CommonInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=star
  * Class HotelStar
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class HotelStar extends CommonNameAbstract implements CommonInterface {}

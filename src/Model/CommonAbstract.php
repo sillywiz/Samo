@@ -1,6 +1,6 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 abstract class CommonAbstract implements CommonInterface
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=spos
  * Class Spo
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class Spo extends CommonAbstract implements CommonInterface
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=currency
  * Class Currency
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class Currency extends CommonNameAbstract implements CommonInterface
 {

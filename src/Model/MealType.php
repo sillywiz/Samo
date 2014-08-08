@@ -1,10 +1,10 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=meal
  * Class MealType
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class MealType extends CommonNameAbstract implements CommonInterface {}

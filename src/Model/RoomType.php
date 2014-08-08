@@ -1,10 +1,10 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=room
  * Class RoomType
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class RoomType extends CommonNameAbstract implements CommonInterface {}

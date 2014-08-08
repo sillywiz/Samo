@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=service
  * Class Service
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class Service extends CommonNameAbstract implements CommonInterface
 {

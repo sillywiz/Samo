@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=region
  * Class Region
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class Region extends CommonNameAbstract implements CommonInterface
 {

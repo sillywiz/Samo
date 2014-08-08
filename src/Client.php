@@ -70,9 +70,9 @@ class Client
     }
 
     /**
-     * @param  string                  $type
-     * @param  string                  $stamp
-     * @param  string                  $delStamp
+     * @param string $type
+     * @param string $stamp
+     * @param string $delStamp
      * @return Result
      * @throws Exception\MainException
      */
@@ -90,8 +90,8 @@ class Client
 
     /**
      * @param $serviceType
-     * @param  string                       $stamp
-     * @param  string                       $delStamp
+     * @param string $stamp
+     * @param string $delStamp
      * @return \SimpleXMLElement
      * @throws ParseException|MainException
      */

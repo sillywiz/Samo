@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=htplace
  * Class Allocation
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class Allocation extends CommonNameAbstract implements CommonInterface
 {

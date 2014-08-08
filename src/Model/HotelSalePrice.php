@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=hotelsalepr
  * Class HotelsalePrice
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class HotelSalePrice extends CommonAbstract implements CommonInterface
 {

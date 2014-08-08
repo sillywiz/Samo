@@ -1,11 +1,11 @@
 <?php
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 /**
  * type=stopsale
  * Class StopSale
- * @package Fruitware\Samo\Models
+ * @package Fruitware\Samo\Model
  */
 class StopSale extends CommonAbstract implements CommonInterface
 {

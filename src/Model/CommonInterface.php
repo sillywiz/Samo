@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace Fruitware\Samo\Models;
+namespace Fruitware\Samo\Model;
 
 interface CommonInterface
 {
